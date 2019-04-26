@@ -12,7 +12,20 @@
         <button id="clearkey">Limpar Chaves</button>
     </div>
     <div id="content">
-        klfhlksdhfksjhdfk
+        <div class="chave">
+            <ul class="numeros">
+                <li>1</li>
+                <li>11</li>
+                <li>14</li>
+                <li>23</li>
+                <li>33</li>
+            </ul>
+            <ul class="estrelas">
+                <li>5</li>
+                <li>6</li>
+            </ul>
+        </div>
+
     </div>
 </body>
 <script>
@@ -47,19 +60,19 @@
         for (let i = 0; i < maxn; i++) {
             tombola[i] = i+1;
         }
-        console.log(tombola);
-        // extracao
+        //console.log(tombola);
+        // extracao numeros
         for (let n=0; n < nn; n++) {
             let idx = Math.floor(Math.random() * tombola.length);
             let extract = tombola.splice(idx,1);
             //console.log(idx,extract,tombola);
             //chave.numeros.splice(chave.numeros.length-1,0,extract[0]);
             chave.numeros.push(extract[0]);
-            console.log(idx,extract,tombola, chave.numeros);
+            //console.log(idx,extract,tombola, chave.numeros);
             
         }
         chave.numeros.sort(comparenumbers);
-        console.log(chave.numeros);
+        //console.log(chave.numeros);
         
         //tombola vazia
         tombola = [];
@@ -68,18 +81,55 @@
         for (let i = 0; i < maxe; i++) {
             tombola[i] = i+1;
         }
-        // extracao
+        // extracao estrelas
         for (let n=0; n < ne; n++) {
             let idx = Math.floor(Math.random() * tombola.length);
             let extract = tombola.splice(idx,1);
             chave.estrelas.push(extract[0]);    
         }
         chave.estrelas.sort(comparenumbers);
-        console.log(chave.estrelas);
+        console.log(chave);
 
-
-
+        postChave(chave);
     });
+
+    function postChave(chave) {
+        // div.chave
+        var divchave = document.createElement("div");
+        divchave.className = "chave";
+
+        //ul.numeros
+        var uln = document.createElement("ul");
+        uln.className = "numeros";
+
+        //ul.estrelas
+        var ule = document.createElement("ul");
+        ule.className = "estrelas";
+
+        // preencher numeros 
+        chave.numeros.forEach(numero => {
+            let lin = document.createElement("li");
+            lin.innerHTML = numero;
+            uln.appendChild(lin);
+        });
+
+        // preencher estrelas 
+            chave.estrelas.forEach(numero => {
+            let lie = document.createElement("li");
+            lie.innerHTML = numero;
+            ule.appendChild(lie);
+        });
+
+        // append listas
+        divchave.appendChild(uln);
+        divchave.appendChild(ule);
+        // append do div
+
+        let divcontent = document.getElementById("content");
+        divcontent.appendChild(divchave);
+
+    }
+
 
     function comparenumbers(a,b) {
         return (a-b);
