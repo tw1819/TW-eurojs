@@ -16,14 +16,73 @@
     </div>
 </body>
 <script>
+
+    //debugger;
     var bmake = document.getElementById("makekey");
-    var bclear = document.getElementById("cleatkey");
-
-
+    var bclear = document.getElementById("clearkey");
 
     bclear.onclick = function () {
         var divcontent = document.getElementById("content");
         divcontent.innerHTML = "";
+    }
+
+    bmake.addEventListener("click", function () {
+        //debugger;
+
+        var nn = 5;
+        var ne = 2;
+
+        var maxn = 50;
+        var maxe = 12;
+
+        var chave = {
+            "numeros" : [],
+            "estrelas" : []
+        }
+
+        //tombola vazia
+        var tombola = [];
+
+        // encher tombola com todos os numeros
+        for (let i = 0; i < maxn; i++) {
+            tombola[i] = i+1;
+        }
+        console.log(tombola);
+        // extracao
+        for (let n=0; n < nn; n++) {
+            let idx = Math.floor(Math.random() * tombola.length);
+            let extract = tombola.splice(idx,1);
+            //console.log(idx,extract,tombola);
+            //chave.numeros.splice(chave.numeros.length-1,0,extract[0]);
+            chave.numeros.push(extract[0]);
+            console.log(idx,extract,tombola, chave.numeros);
+            
+        }
+        chave.numeros.sort(comparenumbers);
+        console.log(chave.numeros);
+        
+        //tombola vazia
+        tombola = [];
+
+        // encher tombola com todos os numeros
+        for (let i = 0; i < maxe; i++) {
+            tombola[i] = i+1;
+        }
+        // extracao
+        for (let n=0; n < ne; n++) {
+            let idx = Math.floor(Math.random() * tombola.length);
+            let extract = tombola.splice(idx,1);
+            chave.estrelas.push(extract[0]);    
+        }
+        chave.estrelas.sort(comparenumbers);
+        console.log(chave.estrelas);
+
+
+
+    });
+
+    function comparenumbers(a,b) {
+        return (a-b);
     }
     
 </script>
