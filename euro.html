@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="control">
+        <button id="makekey">Gerar Chave</button>
+        <button id="clearkey">Limpar Chaves</button>
+    </div>
+    <div id="content">
+        klfhlksdhfksjhdfk
+    </div>
+</body>
+<script>
+    var bmake = document.getElementById("makekey");
+    var bclear = document.getElementById("cleatkey");
+
+
+
+    bclear.onclick = function () {
+        var divcontent = document.getElementById("content");
+        divcontent.innerHTML = "";
+    }
+    
+</script>
+</html>
